@@ -93,7 +93,7 @@ async def forward(message: types.Message):
             message_pin = await bot.send_message(-1001501756386, message.text + '\nСсылка на Zoom из группы: ' + message.chat.title)
             await bot.send_message(message.chat.id, 'я отправил ссылку студентам ✅')
             await message_pin.pin(False)
-    if message.chat.id != -1001723681888: 
+    if message.chat.id != -1001501756386:
         if 'meet.google.com' in message.text:
             message_pin = await bot.send_message(-1001501756386, message.text + '\nСсылка на Google meet из группы: ' + message.chat.title)
             await message_pin.pin(False)
