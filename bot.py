@@ -76,7 +76,7 @@ async def forward(message: types.Message):
 
     # проверить отклик бота
     if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot":
-        await message.reply("На месте")
+        await message.reply("На месте...")
 
     # рассписание звонков
     if message.text == "!звонки" or message.text == "/call" or message.text == "/call@pz11_bot":
