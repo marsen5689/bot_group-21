@@ -49,7 +49,7 @@ second_half = (
 async def forward(message: types.Message):
     # реакция на /start
     if message.text == "/start":
-        await message.reply(f"{message.from_user.first_name}, я предназначен только для группы <pre>ПЗ-11</pre>"
+        await message.reply(f"{message.from_user.first_name}, я предназначен только для группы <pre>ПЗ-11</pre>."
                             f"\nХочешь узнать расписание? Напиши <code>!пары</code>, и я вышлю тебе фото."
                             f"\n\nТак же я умею пересылать ссылку на пары из одной группы в другую и закреплять сообщение там."
                             f"\nВесь функционал бота можно узнать по команде /help"
