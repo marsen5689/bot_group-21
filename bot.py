@@ -63,7 +63,7 @@ async def forward(message: types.Message):
 
     # вызов рассписания
     if message.text == '!пары' or message.text == "/pr" or message.text == "/pr@pz11_bot":
-         message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
+        message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
         await message.delete()
         await asyncio.sleep(180)
         await message_send.delete()
