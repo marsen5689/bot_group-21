@@ -62,8 +62,11 @@ async def forward(message: types.Message):
 
     # вызов рассписания
     if message.text == '!пары' or message.text == "/pr" or message.text == "/pr@pz11_bot":
-        await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
-
+         message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
+        await message.delete()
+        await asyncio.sleep(180)
+        await message_send.delete()
+        
     # вызов списка стедентов
     if message.text == '!группа' or message.text == "!студенты" or message.text == "/students" or message.text == "/students@pz11_bot":
         await message.reply(first_half, reply_markup=kb.fisrt_page_button)
@@ -113,8 +116,10 @@ async def forward(message: types.Message):
                             f'Если у вас есть предложения по улучшению бота-обращайтесь к разработчикам.')
     # команда ФИО
     if message.text == '/fio' or message.text == '!фио' or message.text == '/fio@pz11_bot':
-        await message.answer('Выбери:', reply_markup=kb.all_button)
-    
+        message_send =  await message.answer('Выбери:', reply_markup=kb.all_button)
+        await message.delete()
+        await asyncio.sleep(180)
+        await message_send.delete()
 
 @dp.callback_query_handler()
 async def button(query: types.CallbackQuery):
