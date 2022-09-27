@@ -79,8 +79,11 @@ async def forward(message: types.Message):
                             "\n <a href='tg://user?id=562813685'>🔸Мурадян Арсен</a>", parse_mode='HTML')
 
     # проверить отклик бота
-    if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot":
-        await message.reply("На месте")
+    if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot" or message.text == "/bot" :
+        message_send = await bot.send_message(message.chat.id, "Тут")
+        await message.delete()
+        await asyncio.sleep(3)
+        await message_send.delete()
 
     # рассписание звонков
     if message.text == "!звонки" or message.text == "/call" or message.text == "/call@pz11_bot":
