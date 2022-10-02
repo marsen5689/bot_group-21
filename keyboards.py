@@ -1,5 +1,4 @@
-from aiogram.types import ReplyKeyboardRemove, \
-    ReplyKeyboardMarkup, KeyboardButton, \
+from aiogram.types import KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton
 
 
@@ -11,7 +10,7 @@ sr = InlineKeyboardButton('Среда', callback_data='sr')
 cht = InlineKeyboardButton('Четверг', callback_data='cht')
 pt = InlineKeyboardButton('Пятница', callback_data='pt')
 
-#c ромбиком
+# c ромбиком
 pn1 = InlineKeyboardButton('🔹Понедельник', callback_data='pn')
 vt1 = InlineKeyboardButton('🔹Вторник', callback_data='vt')
 sr1 = InlineKeyboardButton('🔹Среда', callback_data='sr')
@@ -50,10 +49,16 @@ Biology = InlineKeyboardButton('Биология', callback_data='bio_data')
 ECT = InlineKeyboardButton('ТЭЦ', callback_data='ect_data')
 
 # Создаем клавиатуру кнопок
-all_button = InlineKeyboardMarkup().add(math, physics).\
-    add(history, info)\
+all_button = InlineKeyboardMarkup().add(math, physics)\
+    .add(history, info)\
     .add(ua)\
     .add(fizra, BJD, eng)\
     .add(gr, Tech)\
     .add(TKS, ECT)\
     .add(Biology)
+
+button_zoom = InlineKeyboardButton('Ссылка', callback_data='code_data')
+back_button = InlineKeyboardButton('Назад', callback_data='back_data')
+
+second_keyboard = InlineKeyboardMarkup().add(back_button, button_zoom)
+third_keyboard = InlineKeyboardMarkup().add(back_button)
