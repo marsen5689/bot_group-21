@@ -30,8 +30,8 @@ async def forward(message: types.Message):
     # вызов рассписания
     if message.text == '!пары' or message.text == "/pr" or message.text == "/pr@pz11_bot":
         message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
+        await asyncio.sleep(180)
         await message.delete()
-        await asyncio.sleep(8)
         await message_send.delete()
 
     # вызов списка стедентов
@@ -40,21 +40,25 @@ async def forward(message: types.Message):
         
     # вызвать список кодеров
     if message.text == '!админы' or message.text == "!разработчики" or message.text == "/adm" or message.text == "/adm@pz11_bot":
-        await message.reply("👨‍💻 Код писали:"
+        message_send = await message.reply("👨‍💻 Код писали:"
                             "\n <a href='tg://user?id=1051198514'>🔸Страхов Игорь</a>"
                             "\n <a href='tg://user?id=562813685'>🔸Мурадян Арсен</a>", parse_mode='HTML')
+        await asyncio.sleep(30)
+        await message.delete()
+        await message_send.delete()
 
     # * проверить отклик бота
     if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot" or message.text == "/bot" :
         message_send = await bot.send_message(message.chat.id, "Тут")
+        await asyncio.sleep(5)
         await message.delete()
-        await asyncio.sleep(3)
         await message_send.delete()
 
     # * рассписание звонков
     if message.text == "!звонки" or message.text == "/call" or message.text == "/call@pz11_bot":
         message_send = await message.reply(f'{message.from_user.first_name}, {call_message}', parse_mode='HTML')
-        await asyncio.sleep(5)
+        await asyncio.sleep(180)
+        await message.delete()
         await message_send.delete()
 
     # переслать ссылки на зум и гугл мит
@@ -71,10 +75,17 @@ async def forward(message: types.Message):
 
     # команда !помощь
     if message.text == '!помощь' or message.text == "/help" or message.text == "/help@pz11_bot":
-        await message.reply(f'{message.from_user.first_name}, {message_help}', parse_mode='HTML')
+        message_send = await message.reply(f'{message.from_user.first_name}, {message_help}', parse_mode='HTML')
     # команда ФИО
     if message.text == '/fio' or message.text == '!фио' or message.text == '/fio@pz11_bot':
-        await message.answer('Выбери:', reply_markup=kb.all_button)
+        message_send = await message.answer('Выбери:', reply_markup=kb.all_button)
+        await asyncio.sleep(180)
+        await message.delete()
+        await message_send.delete()
+
+    if message.text == "!Обнова_в_боте":
+        message_send = await message.answer(f"📣 Исходный код бота был обновлен 🥳\n\nА это значит что вышло обновление, добавлены следющии функции:\n🔸Появились коды и ссылки на пары в разделе /fio\n🔸Теперь бот умеет удалять сообщения за собой, будут удаляться через 3 минуты следующие команды: /call, /fio, /pr, /adm\n\nЕсли у вас есть предложения по улучшению бота - обращайтесь к разработчикам(/adm).")
+        await message.delete()
 
 
 @dp.callback_query_handler()
