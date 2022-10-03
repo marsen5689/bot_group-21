@@ -199,7 +199,8 @@ async def button(query: types.CallbackQuery):
         if 'Физика' in query.message.text:
             await bot.edit_message_text(f'Физика: Семенченко Татьяна Александровна\n'
                                         f'Код конференции: <code>{physics_code}</code>\n'
-                                        f'Код доступа: <code>{physics_password}</code>\n\n'
+                                        f'Код доступа: <code>{physics_password}</code>\n'
+                                        f'<a href="https://us05web.zoom.us/j/2380384754?pwd=MVRxdGpoM2FPd3BYcUU3VlJFQW4wUT09">Open Zoom</a>',\n\n'
                                         f'Астрономия: Корнеева Ирина Анатаоливна\n'
                                         f'Код конференции: <code>{ast_code}</code>\n'
                                         f'Код доступа: <code>{ast_password}</code>\n'
