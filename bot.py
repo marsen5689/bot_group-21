@@ -1,8 +1,4 @@
-from email import message
 from aiogram import Bot, types, Dispatcher, executor
-import asyncio
-# from aiogram.dispatcher import Dispatcher
-# from aiogram.utils import executor
 from config import TOKEN
 import keyboards as kb
 from list_zoom import *
@@ -11,10 +7,6 @@ import asyncio
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher(bot)
-import random
-
-
-# [](tg://user?id=chat_id)
 
 
 @dp.message_handler(content_types='text')
@@ -22,14 +14,15 @@ async def forward(message: types.Message):
     # реакция на /start
     if message.text == "/start":
         await message.reply(f'{message.from_user.first_name}, {message_start}', parse_mode='HTML')
-        
+
     # узнать свой id и id группы
     if message.text == '/id' or message.text == "!id" or message.text == "!ид" or message.text == "/id@pz11_bot":
         await message.reply(f"Твой id: {message.from_user.id}\nЧат id: `{message.chat.id}`", parse_mode="MarkdownV2")
 
     # вызов рассписания
     if message.text == '!пары' or message.text == "/pr" or message.text == "/pr@pz11_bot":
-        message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png", reply_markup=kb.pn2)
+        message_send = await message.answer_photo("https://telegra.ph/file/6f4cbad77f99e7fa810ea.png",
+                                                  reply_markup=kb.pn2)
         await asyncio.sleep(180)
         await message.delete()
         await message_send.delete()
@@ -37,18 +30,18 @@ async def forward(message: types.Message):
     # вызов списка стедентов
     if message.text == '!группа' or message.text == "!студенты" or message.text == "/students" or message.text == "/students@pz11_bot":
         await message.reply(first_half, reply_markup=kb.fisrt_page_button)
-        
+
     # вызвать список кодеров
     if message.text == '!админы' or message.text == "!разработчики" or message.text == "/adm" or message.text == "/adm@pz11_bot":
         message_send = await message.reply("👨‍💻 Код писали:"
-                            "\n <a href='tg://user?id=1051198514'>🔸Страхов Игорь</a>"
-                            "\n <a href='tg://user?id=562813685'>🔸Мурадян Арсен</a>", parse_mode='HTML')
+                                           "\n <a href='tg://user?id=1051198514'>🔸Страхов Игорь</a>"
+                                           "\n <a href='tg://user?id=562813685'>🔸Мурадян Арсен</a>", parse_mode='HTML')
         await asyncio.sleep(30)
         await message.delete()
         await message_send.delete()
 
     # * проверить отклик бота
-    if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot" or message.text == "/bot" :
+    if message.text == "!бот" or message.text == "!ботик" or message.text == "/bot@pz11_bot" or message.text == "/bot":
         message_send = await bot.send_message(message.chat.id, "Тут")
         await asyncio.sleep(5)
         await message.delete()
@@ -64,12 +57,14 @@ async def forward(message: types.Message):
     # переслать ссылки на зум и гугл мит
     if message.chat.id != -1001501756386:
         if 'zoom.us' in message.text:
-            message_pin = await bot.send_message(-1001501756386, message.text + '\nСсылка на Zoom из группы: ' + message.chat.title)
+            message_pin = await bot.send_message(-1001501756386,
+                                                 message.text + '\nСсылка на Zoom из группы: ' + message.chat.title)
             await bot.send_message(message.chat.id, 'Ссылка отправлена студентам ✅')
             await message_pin.pin(False)
     if message.chat.id != -1001501756386:
         if 'meet.google.com' in message.text:
-            message_pin = await bot.send_message(-1001501756386, message.text + '\nСсылка на Google meet из группы: ' + message.chat.title)
+            message_pin = await bot.send_message(-1001501756386,
+                                                 message.text + '\nСсылка на Google meet из группы: ' + message.chat.title)
             await bot.send_message(message.chat.id, 'Ссылка отправлена студентам ✅')
             await message_pin.pin(False)
 
@@ -84,7 +79,8 @@ async def forward(message: types.Message):
         await message_send.delete()
 
     if message.text == "!Обнова_в_боте":
-        message_send = await message.answer(f"📣 Исходный код бота был обновлен 🥳\n\nА это значит что вышло обновление, добавлены следющии функции:\n🔸Появились коды и ссылки на пары в разделе /fio\n🔸Теперь бот умеет удалять сообщения за собой, будут удаляться через 3 минуты следующие команды: /call, /fio, /pr, /adm\n\nЕсли у вас есть предложения по улучшению бота - обращайтесь к разработчикам(/adm).")
+        message_send = await message.answer(
+            f"📣 Исходный код бота был обновлен 🥳\n\nА это значит что вышло обновление, добавлены следющии функции:\n🔸Появились коды и ссылки на пары в разделе /fio\n🔸Теперь бот умеет удалять сообщения за собой, будут удаляться через 3 минуты следующие команды: /call, /fio, /pr, /adm\n\nЕсли у вас есть предложения по улучшению бота - обращайтесь к разработчикам(/adm).")
         await message.delete()
 
 
@@ -178,7 +174,8 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{math_code}</code>\n'
                                         f'Код доступа: <code>{math_password}</code>\n'
                                         f'<a href="https://us05web.zoom.us/j/6032452922?pwd=ZjNZRlJJempEaW5vQ1Y3MDJuWlQvUT09">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'Физра' in query.message.text:
@@ -193,19 +190,21 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{history_code}</code>\n'
                                         f'Код доступа: <code>{history_password}</code>\n'
                                         f'<a href="https://us05web.zoom.us/j/3623752350?pwd=MXcxS0lhYU1RYUdTUGVDeGFIbGtZUT09">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'Физика' in query.message.text:
             await bot.edit_message_text(f'Физика: Семенченко Татьяна Александровна\n'
                                         f'Код конференции: <code>{physics_code}</code>\n'
                                         f'Код доступа: <code>{physics_password}</code>\n'
-                                        f'<a href="https://us05web.zoom.us/j/2380384754?pwd=MVRxdGpoM2FPd3BYcUU3VlJFQW4wUT09">Open Zoom</a>\n\n'
+                                        f'<a href="https://us05web.zoom.us/j/6105813910?pwd=Nld5MlBLSmdKaG4rZFA3UVNkMkNOZz09">Open Zoom</a>\n\n'
                                         f'Астрономия: Корнеева Ирина Анатаоливна\n'
                                         f'Код конференции: <code>{ast_code}</code>\n'
                                         f'Код доступа: <code>{ast_password}</code>\n'
                                         f'<a href="https://us05web.zoom.us/j/2380384754?pwd=MVRxdGpoM2FPd3BYcUU3VlJFQW4wUT09">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'Английский' in query.message.text:
@@ -221,21 +220,24 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{ua_code}</code>\n'
                                         f'Код доступа: <code>{ua_password}</code>\n'
                                         f'<a href="https://us04web.zoom.us/j/9651861969?pwd=TW1BaWdRSVExNzBPaHk4T2t1emxpQT09 ">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'БЖД' in query.message.text:
-            await bot.edit_message_text(f'БЖД: Мирошиченко Юрий Викторович: <a href="meet.google.com/ogw-qguh-tyu">Google Meet</a>',
-                                        query.message.chat.id, query.message.message_id,
-                                        reply_markup=kb.third_keyboard, disable_web_page_preview=True,
-                                        parse_mode='HTML')
+            await bot.edit_message_text(
+                f'БЖД: Мирошиченко Юрий Викторович: <a href="meet.google.com/ogw-qguh-tyu">Google Meet</a>',
+                query.message.chat.id, query.message.message_id,
+                reply_markup=kb.third_keyboard, disable_web_page_preview=True,
+                parse_mode='HTML')
 
         if 'Инф.технологии' in query.message.text:
             await bot.edit_message_text(f'Инф.технологии: Беликова Виктория Викторовна\n\n'
                                         f'Код конференции: <code>{info_code}</code>\n'
                                         f'Код доступа:<code>{info_password}</code>\n'
                                         f'<a href="https://us05web.zoom.us/j/3746736250?pwd=S2dvc25vSXJGeXJCYXd3T3pxMlNHUT09">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'Гром.освита' in query.message.text:
@@ -251,7 +253,8 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{tech_code}</code>\n'
                                         f'Код доступа:<code>{tech_password}</code>\n'
                                         f'<a href="https://us04web.zoom.us/j/4606731017?pwd=1uiAKZ1BzgAZhJawjyd1WldxIbHi8b.1">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'ОС ТКС' in query.message.text:
@@ -266,7 +269,8 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{bio_code}</code>\n'
                                         f'Код доступа:<code>{bio_password}</code>\n'
                                         f'<a href="https://us04web.zoom.us/j/5698912902?pwd=Ia6IrL0bfl0JP1PxidpDWdD4YKrRUO.1">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
         if 'ТЭЦ' in query.message.text:
@@ -274,7 +278,8 @@ async def button(query: types.CallbackQuery):
                                         f'Код конференции: <code>{ect_code}</code>\n'
                                         f'Код доступа:<code>{ect_password}</code>\n'
                                         f'<a href="https://us05web.zoom.us/j/86829275931?pwd=THVRLzdLUllveGlEY0J5aEVzSjQ5UT09">Open Zoom</a>',
-                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
+                                        query.message.chat.id, query.message.message_id, disable_web_page_preview=True,
+                                        reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
 
