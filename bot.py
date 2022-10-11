@@ -87,19 +87,19 @@ async def forward(message: types.Message):
 @dp.callback_query_handler()
 async def button(query: types.CallbackQuery):
     if query.data == 'pn':
-        media = types.InputMediaPhoto('https://telegra.ph/file/6f4cbad77f99e7fa810ea.png')
+        media = types.InputMediaPhoto('https://telegra.ph/file/ac71dafd5350ad0363392.png')
         await bot.edit_message_media(media, query.message.chat.id, query.message.message_id, reply_markup=kb.pn2)
     if query.data == 'vt':
-        media = types.InputMediaPhoto('https://telegra.ph/file/81ab8b5b475dcb00798ff.png')
+        media = types.InputMediaPhoto('https://telegra.ph/file/7bd73ba68968e335c6548.png')
         await bot.edit_message_media(media, query.message.chat.id, query.message.message_id, reply_markup=kb.vt2)
     if query.data == 'sr':
-        media = types.InputMediaPhoto('https://telegra.ph/file/82ae56b5c61854dbd5ef5.png')
+        media = types.InputMediaPhoto('https://telegra.ph/file/f7d61b317d6593100a5d3.png')
         await bot.edit_message_media(media, query.message.chat.id, query.message.message_id, reply_markup=kb.sr2)
     if query.data == 'cht':
-        media = types.InputMediaPhoto('https://telegra.ph/file/97a0f47b56f0abc7451ff.png')
+        media = types.InputMediaPhoto('https://telegra.ph/file/82a6db2874bbb75ea5a8c.png')
         await bot.edit_message_media(media, query.message.chat.id, query.message.message_id, reply_markup=kb.cht2)
     if query.data == 'pt':
-        media = types.InputMediaPhoto('https://telegra.ph/file/d4118ae8cbd5c10306a50.png')
+        media = types.InputMediaPhoto('https://telegra.ph/file/b57b76a414f1cb1c4bfce.png')
         await bot.edit_message_media(media, query.message.chat.id, query.message.message_id, reply_markup=kb.pt2)
 
     if query.data == 'next_page_data':
