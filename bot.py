@@ -96,6 +96,12 @@ async def forward(message: types.Message):
         else:
             await bot.send_message(message.chat.id, "/pr летит на помощь")
             await bot.send_message(message.chat.id, "а месте с ним и /fio")
+    if 'Пара будет?' in message.text:
+        if message.from_user.id == 956955011:
+            await bot.send_message(message.chat.id, "Сударь, Ты заїбав вже, напиши /pr и сам посмотри")
+        else:
+            await bot.send_message(message.chat.id, "/pr летит на помощь")
+            await bot.send_message(message.chat.id, "а месте с ним и /fio")
 
 @dp.callback_query_handler()
 async def button(query: types.CallbackQuery):
