@@ -14,6 +14,12 @@ async def forward(message: types.Message):
     # реакция на /start
     if message.text == "/start":
         await message.reply(f'{message.from_user.first_name}, {message_start}', parse_mode='HTML')
+        await bot.send_message(-1001723681888,
+            f"{message.text}"
+            f"\nОт {message.from_user.first_name}" 
+            f"\n @{message.from_user.username}"
+            f"\n id: {message.from_user.id}"
+            f"\n<a href='tg://user?id={message.from_user.id}'>Open account</a>", parse_mode="HTML")
 
     # узнать свой id и id группы
     if message.text == '/id' or message.text == "!id" or message.text == "!ид" or message.text == "/id@pz11_bot":
