@@ -54,7 +54,7 @@ async def forward(message: types.Message):
         await message_send.delete()
 
     # * рассписание звонков
-    if message.text == "!звонки" or message.text == "/call" or message.text == "/call@pz11_bot":
+    if message.text == "!звонки" or message.text == "/calls" or message.text == "/calls@pz11_bot":
         message_send = await message.reply(f'{message.from_user.first_name}, {call_message}', parse_mode='HTML')
         await asyncio.sleep(180)
         await message.delete()
