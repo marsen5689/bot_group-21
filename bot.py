@@ -26,7 +26,7 @@ async def forward(message: types.Message):
         await message.reply(f"Твой id: {message.from_user.id}\nЧат id: `{message.chat.id}`", parse_mode="MarkdownV2")
 
     # вызов рассписания
-    if message.text == '!пары' or message.text == "/pr" or message.text == "/pr@pz11_bot":
+    if message.text == '!пары' or message.text == "/pr" or message.text == ".пр" or message.text == ".pr" or message.text == "/пр" or message.text == "/pr@pz11_bot":
         message_send = await message.answer_photo("https://telegra.ph/file/ac71dafd5350ad0363392.png",
                                                   reply_markup=kb.pn2)
         await asyncio.sleep(180)
