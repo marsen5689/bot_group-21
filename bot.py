@@ -265,6 +265,10 @@ async def button(query: types.CallbackQuery):
                                         query.message.chat.id, query.message.message_id, disable_web_page_preview=True, reply_markup=kb.third_keyboard,
                                         parse_mode='HTML')
 
+async def send_message_on_startup():
+    await bot.send_message(-1001501756386, f'Во мне что то обновилось и я перезагрузился, зайки 🐰')
+    # await bot.send_message(-942431091, f'{rand}', reply_markup=keyboard) 
+    # await bot.send_message(-100942431091, 'Я снова в строю 💪', reply_markup=keyboard)
 
 if __name__ == '__main__':
-    executor.start_polling(dp)
+    executor.start_polling(dp, on_startup=lambda dp: send_message_on_startup())
