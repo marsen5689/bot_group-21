@@ -15,7 +15,7 @@ import random
 
 
 # [](tg://user?id=chat_id)
-
+# adsdas
 
 @dp.message_handler(content_types='text')
 async def forward(message: types.Message):
